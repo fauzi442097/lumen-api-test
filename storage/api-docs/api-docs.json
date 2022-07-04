@@ -1,0 +1,1397 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API CRUD Barang",
+        "description": "This is a sample crud barang with mongodb",
+        "contact": {
+            "name": "Ahmad Fauzi",
+            "email": "fauzi442097@gmail.com"
+        },
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Demo API Server"
+        }
+    ],
+    "paths": {
+        "/barang": {
+            "get": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Get all data barang",
+                "description": "Get all data barang in database",
+                "operationId": "3415f6f852aa37c9b62b1cbac1fc2752",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "_id": {
+                                                        "description": "Id Barang",
+                                                        "type": "string",
+                                                        "example": "62bfd45c1ac213e12405b513"
+                                                    },
+                                                    "namaBarang": {
+                                                        "description": "Nama Barang",
+                                                        "type": "string",
+                                                        "maxLength": 100,
+                                                        "example": "Meja"
+                                                    },
+                                                    "harga": {
+                                                        "description": "Harga Barang",
+                                                        "type": "number",
+                                                        "example": "500000"
+                                                    },
+                                                    "stock": {
+                                                        "description": "Stock Barang",
+                                                        "type": "number",
+                                                        "minLength": 1,
+                                                        "example": "1"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "_id": "62bfd45c1ac213e12405b513",
+                                                    "namaBarang": "Meja",
+                                                    "harga": "500000",
+                                                    "stock": "1"
+                                                },
+                                                {
+                                                    "_id": "62bfd45c1ac213e12405b500",
+                                                    "namaBarang": "Kulkas",
+                                                    "harga": "3000000",
+                                                    "stock": "5"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Update existing data barang",
+                "description": "Update existing data barang to database",
+                "operationId": "146bd78fc0506989baeffa4e166aa652",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "namaBarang",
+                                    "harga",
+                                    "stock"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "Id Barang",
+                                        "type": "string",
+                                        "example": "62bfd45c1ac213e12405b513"
+                                    },
+                                    "namaBarang": {
+                                        "description": "Nama Barang",
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "Komputer"
+                                    },
+                                    "harga": {
+                                        "description": "Harga Barang",
+                                        "type": "number",
+                                        "example": "10000"
+                                    },
+                                    "stock": {
+                                        "description": "Stock Barang",
+                                        "type": "number",
+                                        "minLength": 1,
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success Updated"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "namaBarang": {
+                                                    "description": "Nama Barang",
+                                                    "type": "string",
+                                                    "maxLength": 100,
+                                                    "example": "Komputer"
+                                                },
+                                                "harga": {
+                                                    "description": "Harga Barang",
+                                                    "type": "number",
+                                                    "example": "10000"
+                                                },
+                                                "stock": {
+                                                    "description": "Stock Barang",
+                                                    "type": "number",
+                                                    "minLength": 1,
+                                                    "example": "1"
+                                                },
+                                                "_id": {
+                                                    "description": "Id Barang",
+                                                    "type": "string",
+                                                    "example": "62bfd45c1ac213e12405b513"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The id field is required."
+                                                    }
+                                                },
+                                                "namaBarang": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The nama barang field is required."
+                                                    }
+                                                },
+                                                "harga": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The harga field is required."
+                                                    }
+                                                },
+                                                "stock": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The stock field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Create new data barang",
+                "description": "Create new todolist to database",
+                "operationId": "876831cf30f22df5da8f1b10b7914dee",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "namaBarang",
+                                    "harga",
+                                    "stock"
+                                ],
+                                "properties": {
+                                    "namaBarang": {
+                                        "description": "Nama Barang",
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "Meja"
+                                    },
+                                    "harga": {
+                                        "description": "Harga Barang",
+                                        "type": "number",
+                                        "example": "10000"
+                                    },
+                                    "stock": {
+                                        "description": "Stock Barang",
+                                        "type": "number",
+                                        "minLength": 1,
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success Created"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "namaBarang": {
+                                                    "description": "Nama Barang",
+                                                    "type": "string",
+                                                    "maxLength": 100,
+                                                    "example": "Meja"
+                                                },
+                                                "harga": {
+                                                    "description": "Harga Barang",
+                                                    "type": "number",
+                                                    "example": "500000"
+                                                },
+                                                "stock": {
+                                                    "description": "Stock Barang",
+                                                    "type": "number",
+                                                    "minLength": 1,
+                                                    "example": "1"
+                                                },
+                                                "_id": {
+                                                    "description": "Id Barang",
+                                                    "type": "string",
+                                                    "example": "62bfd45c1ac213e12405b513"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "namaBarang": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The nama barang field is required."
+                                                    }
+                                                },
+                                                "harga": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The harga field is required."
+                                                    }
+                                                },
+                                                "stock": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The stock field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/barang/{id}": {
+            "get": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Find data barang",
+                "description": "Find data barang in database by Id",
+                "operationId": "0d5d3892027bd58b8c779a1b0d2c4dd5",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "namaBarang": {
+                                                    "description": "Nama Barang",
+                                                    "type": "string",
+                                                    "maxLength": 100,
+                                                    "example": "Meja"
+                                                },
+                                                "harga": {
+                                                    "description": "Harga Barang",
+                                                    "type": "number",
+                                                    "example": "500000"
+                                                },
+                                                "stock": {
+                                                    "description": "Stock Barang",
+                                                    "type": "number",
+                                                    "minLength": 1,
+                                                    "example": "1"
+                                                },
+                                                "_id": {
+                                                    "description": "Id Barang",
+                                                    "type": "string",
+                                                    "example": "62bfd45c1ac213e12405b513"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Barang"
+                ],
+                "summary": "Delete existing data barang",
+                "description": "Delete existing data barang in database by Id",
+                "operationId": "c4e24ce1b762ae40ee8a0043f0685076",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/id"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Success Deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success deleted"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "description": "Login into system",
+                "operationId": "fead3fd462e43c06d3845d2b11c43e8e",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "username",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "username": {
+                                        "description": "Username login",
+                                        "type": "string",
+                                        "minLength": 3,
+                                        "example": "admin"
+                                    },
+                                    "password": {
+                                        "description": "Password login",
+                                        "type": "string",
+                                        "minLength": 5,
+                                        "example": "admin"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Login Success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "token": {
+                                                    "description": "Token JWT",
+                                                    "type": "string",
+                                                    "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvL2xvZ2luIiwiaWF0IjoxNjU2NzYxMzU1LCJleHAiOjE2NTY3NjQ5NTUsIm5iZiI6MTY1Njc2MTM1NSwianRpIjoiSUF1TU1aT3g4ZDJ1clRkRSJ9.ehdl9Y4yYOO9nLn8LJsdHw8W9yisa05ZG3SxaJS5P3k"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "username": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The username field is required."
+                                                    }
+                                                },
+                                                "password": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The password is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Logout",
+                "description": "Logout from system",
+                "operationId": "eac484ff6dd771980c5585d9e2ac42cf",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer {token}",
+                        "required": true,
+                        "schema": {
+                            "type": "bearerAuth"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Logout Success"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": "400"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Token is Invalid"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": "400"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Token is Expired"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": "400"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Authorization Token not found"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "401"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized. Please login again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/checkLogin": {
+            "get": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Checklogin",
+                "description": "Checklogin",
+                "operationId": "08a3918fabdf3e6a5ed7507efd3efb7f",
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer {token}",
+                        "required": true,
+                        "schema": {
+                            "type": "bearerAuth"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Authorization"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": "400"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Token is Invalid"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": "400"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Token is Expired"
+                                                }
+                                            },
+                                            "type": "object"
+                                        },
+                                        {
+                                            "properties": {
+                                                "code": {
+                                                    "type": "number",
+                                                    "example": "400"
+                                                },
+                                                "message": {
+                                                    "type": "string",
+                                                    "example": "Authorization Token not found"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "401"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Unauthorized. Please login again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all users",
+                "description": "Get all users in realtime database",
+                "operationId": "7e2f5799553ec93c9c43e2a58490d447",
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "key": {
+                                                        "description": "Key ",
+                                                        "type": "string",
+                                                        "example": "-N61YMhcGqkNze0_tYh6"
+                                                    },
+                                                    "name": {
+                                                        "description": "name user",
+                                                        "type": "string",
+                                                        "minLength": 3,
+                                                        "example": "User Test3"
+                                                    },
+                                                    "address": {
+                                                        "description": "address user",
+                                                        "type": "string",
+                                                        "example": "Surabaya"
+                                                    },
+                                                    "email": {
+                                                        "description": "email user",
+                                                        "type": "string",
+                                                        "example": "usertest3@gmail.com"
+                                                    },
+                                                    "phoneNo": {
+                                                        "description": "Phone no",
+                                                        "type": "number",
+                                                        "minLength": 8,
+                                                        "example": "08986162100"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            },
+                                            "example": [
+                                                {
+                                                    "key": "-N61YMhcGqkNze0_tYh6",
+                                                    "name": "User Test3",
+                                                    "address": "Surabaya",
+                                                    "email": "usertest3@gmail.com",
+                                                    "phoneNo": "08986162100"
+                                                },
+                                                {
+                                                    "key": "-N61YK8mgZg2xuOmKSyR",
+                                                    "name": "User Test2",
+                                                    "address": "Jakarta",
+                                                    "email": "usertest2@gmail.com",
+                                                    "phoneNo": "08986162400"
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create new user",
+                "description": "Create new data user to database",
+                "operationId": "a1fce870c566eb5fc0cf3178ec5d2fed",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "address",
+                                    "email",
+                                    "phoneNo"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Nama user",
+                                        "type": "string",
+                                        "minLength": 3,
+                                        "example": "User Test3"
+                                    },
+                                    "address": {
+                                        "description": "address user",
+                                        "type": "string",
+                                        "example": "Surabaya"
+                                    },
+                                    "email": {
+                                        "description": "email user",
+                                        "type": "string",
+                                        "example": "usertest3@gmail.com"
+                                    },
+                                    "phoneNo": {
+                                        "description": "phone no user",
+                                        "type": "number",
+                                        "minLength": 1,
+                                        "example": "08986162100"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Success Created"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "name": {
+                                                    "description": "Nama user",
+                                                    "type": "string",
+                                                    "minLength": 3,
+                                                    "example": "User Test3"
+                                                },
+                                                "address": {
+                                                    "description": "address user",
+                                                    "type": "string",
+                                                    "example": "Surabaya"
+                                                },
+                                                "email": {
+                                                    "description": "email user",
+                                                    "type": "string",
+                                                    "example": "usertest3@gmail.com"
+                                                },
+                                                "phoneNo": {
+                                                    "description": "phone no user",
+                                                    "type": "number",
+                                                    "minLength": 1,
+                                                    "example": "08986162100"
+                                                },
+                                                "key": {
+                                                    "description": "key of user",
+                                                    "type": "string",
+                                                    "example": "-N61YMhcGqkNze0_tYh6"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                },
+                                                "address": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The address field is required."
+                                                    }
+                                                },
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The email field is required."
+                                                    }
+                                                },
+                                                "phoneNo": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The phoneNo field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{key}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Find user by key",
+                "description": "Find data user in database by Key",
+                "operationId": "51d3d3d93274ac53f5fb3a6c95a77f07",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "key": {
+                                                    "description": "Key ",
+                                                    "type": "string",
+                                                    "example": "-N61YMhcGqkNze0_tYh6"
+                                                },
+                                                "name": {
+                                                    "description": "name user",
+                                                    "type": "string",
+                                                    "minLength": 3,
+                                                    "example": "User Test3"
+                                                },
+                                                "address": {
+                                                    "description": "address user",
+                                                    "type": "string",
+                                                    "example": "Surabaya"
+                                                },
+                                                "email": {
+                                                    "description": "email user",
+                                                    "type": "string",
+                                                    "example": "usertest3@gmail.com"
+                                                },
+                                                "phoneNo": {
+                                                    "description": "Phone no",
+                                                    "type": "number",
+                                                    "minLength": 8,
+                                                    "example": "08986162100"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/{key}": {
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete existing user",
+                "description": "Delete existing data user in database by Key",
+                "operationId": "f6383df382ada2d83954fc94a916b96b",
+                "parameters": [
+                    {
+                        "$ref": "#/components/parameters/key"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Success Deleted",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success deleted"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update existing data user",
+                "description": "Update existing data user to database",
+                "operationId": "c1f4bf30328d3929c1d0563d017d5710",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "namaBarang",
+                                    "harga",
+                                    "stock"
+                                ],
+                                "properties": {
+                                    "key": {
+                                        "description": "Key user",
+                                        "type": "string",
+                                        "example": "-N61UK0CJzWAmoiBULVU"
+                                    },
+                                    "name": {
+                                        "description": "Nama user",
+                                        "type": "string",
+                                        "minLength": 3,
+                                        "example": "User Test1"
+                                    },
+                                    "address": {
+                                        "description": "address user",
+                                        "type": "string",
+                                        "example": "Bandung"
+                                    },
+                                    "email": {
+                                        "description": "email user",
+                                        "type": "string",
+                                        "example": "usertest3@gmail.com"
+                                    },
+                                    "phoneNo": {
+                                        "description": "phone no user",
+                                        "type": "number",
+                                        "minLength": 1,
+                                        "example": "08986162100"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "example": "Success Updated"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "key": {
+                                                    "description": "Key user",
+                                                    "type": "string",
+                                                    "example": "-N61UK0CJzWAmoiBULVU"
+                                                },
+                                                "name": {
+                                                    "description": "Nama user",
+                                                    "type": "string",
+                                                    "minLength": 3,
+                                                    "example": "User Test1"
+                                                },
+                                                "address": {
+                                                    "description": "address user",
+                                                    "type": "string",
+                                                    "example": "Bandung"
+                                                },
+                                                "email": {
+                                                    "description": "email user",
+                                                    "type": "string",
+                                                    "example": "usertest3@gmail.com"
+                                                },
+                                                "phoneNo": {
+                                                    "description": "phone no user",
+                                                    "type": "number",
+                                                    "minLength": 1,
+                                                    "example": "08986162100"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Response Not Found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NotFoundResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "code": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "The given data was invalid."
+                                        },
+                                        "errors": {
+                                            "properties": {
+                                                "name": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The name field is required."
+                                                    }
+                                                },
+                                                "address": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The address field is required."
+                                                    }
+                                                },
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The email field is required."
+                                                    }
+                                                },
+                                                "phoneNo": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "The phoneNo field is required."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "NotFoundResponse": {
+                "title": "Response Not Found",
+                "properties": {
+                    "code": {
+                        "type": "number",
+                        "example": "404"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Data Not Found"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "parameters": {
+            "key": {
+                "name": "key",
+                "in": "path",
+                "description": "Key of data user",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "id": {
+                "name": "id",
+                "in": "path",
+                "description": "Id of data barang",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
