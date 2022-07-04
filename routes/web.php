@@ -43,5 +43,5 @@ $router->group(['prefix' => '/api/v1'], function () use ($router) {
     $router->post('/integrations/register', 'AuthController@register');
     $router->post('/integrations/login', 'AuthController@login');
 
-    $router->get('/denoms/filter', 'AuthController@filterData');
+    $router->get('/denoms/filter', 'FilterController@filterData');
 });

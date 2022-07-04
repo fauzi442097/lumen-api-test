@@ -36,8 +36,8 @@
             padding: .5em 1em;
         }
 
-        .soal6 {
-            background: #d7d7d7;
+        .text-center {
+            text-align: center;
         }
 
 
@@ -46,16 +46,17 @@
 <body>
     <div class="container">
         <h1> Welcome to API CRUD With Mongodb </h1>
-        <p class="italic">
-            This API build with Lumen Framework With: <br>
-            <ul>
-                <li>  CRUD data Barang Using MongoDB </li>
-                <li>  CRUD data User Using Firebase </li>
-                <li>  Auth with JWT Token </li>
-                <li>  Integrating with another API https://reqres.in/ </li>
-                <li> Filter Denom </li>
-            </ul>
-        </p>
+        <div>
+            <p class="italic text-center">
+                This API build with Lumen Framework With: <br>
+                - CRUD data Barang Using MongoDB <br>
+                - CRUD data User Using Firebase <br>
+                - Auth with JWT Token <br>
+                - Integrating with another API https://reqres.in/ <br>
+                - Filter Denom <br>
+            </p>
+
+        </div>
 
         <table>
             <tr>
@@ -114,7 +115,7 @@
             </tr>
         </table>
 
-        <p> {{  app()->version() }}</p>
+        <p class="text-center"> {{  app()->version() }}</p>
     </div>
 </body>
 </html>
