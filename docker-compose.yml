@@ -20,13 +20,13 @@ services:
     ports:
       - "8000:80"
     depends_on:
-      - lumen
+      - php
     links:
-      - lumen
+      - php
     networks:
       - api
 
-  lumen:
+  php:
     ports:
       - 9000:9000
     volumes:
@@ -34,5 +34,20 @@ services:
       - /var/www/html/vendor/
     build: .
     restart: unless-stopped
+    depends_on:
+      - mongodb
     networks:
       - api
+
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    tty: true
+    restart: unless-stopped
+    ports:
+      - 27017:27017
+    networks:
+      - api
+    environment:
+       MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}

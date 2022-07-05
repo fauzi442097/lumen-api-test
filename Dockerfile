@@ -5,6 +5,8 @@ WORKDIR /var/www/html/
 RUN apk --update add --virtual build-dependencies build-base openssl-dev autoconf \
     && pecl install mongodb \
     && docker-php-ext-enable mongodb \
+    && pecl install redis \
+    && docker-php-ext-enable redis.so \
     && echo "extension=mongodb.so" >> /usr/local/etc/php/php.ini \
     && apk del build-dependencies build-base openssl-dev autoconf \
     && rm -rf /var/cache/apk/*
