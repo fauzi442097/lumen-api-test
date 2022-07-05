@@ -41,3 +41,4 @@ Installation using docker compose
 ```
 $ docker compose up
 ```
+Enter browser and run localhost:8000
