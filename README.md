@@ -1,4 +1,4 @@
-# Lumen CRUD With Mongodb
+# Lumen API Test
 
 Project Test API With : <br>
 
@@ -34,4 +34,10 @@ Start server via Terminal
 
 ```
 $ php -S localhost:8000 public/index.php
+```
+
+Installation using docker compose
+
+```
+$ docker compose up
 ```
