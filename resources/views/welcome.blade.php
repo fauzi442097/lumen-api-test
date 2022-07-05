@@ -98,14 +98,14 @@
                 <td> <a href="https://reqres.in/" target="_blank"> https://reqres.in/ </a> </td>
             </tr>
             <tr class="">
-                <td> [POST] http://localhost:8000/register </td>
-                <td> : </td>
                 <td> https://reqres.in/register </td>
+                <td> : </td>
+                <td> [POST] http://localhost:8000/api/v1/integrations/register </a> </td>
             </tr>
             <tr class="">
-                <td> [POST] http://localhost:8000/login </td>
-                <td> : </td>
                 <td> https://reqres.in/login </td>
+                <td> : </td>
+                <td> [POST] http://localhost:8000/api/v1/integrations/login </a> </td>
             </tr>
             <tr>
                 <td> Jawaban Soal No 7</td>

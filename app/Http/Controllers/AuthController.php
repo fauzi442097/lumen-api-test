@@ -13,12 +13,18 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         try {
-            $this->validate($request, [
-                'email' => 'required|email',
-                'password' => 'required'
-            ]);
+            // $this->validate($request, [
+            //     'email' => 'required|email',
+            //     'password' => 'required'
+            // ]);
 
             $dataRegister = $request->all();
+
+            $dataRegister = [
+                "email" => "eve.holt@reqres.in",
+                "password" => "pistol"
+            ];
+
             [$stsCode, $respBody] = $this->makeRequest('POST', 'register', $dataRegister);
 
             if ($stsCode == 200) {
@@ -44,10 +50,15 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         try {
-            $this->validate($request, [
-                'email' => 'required|email',
-                'password' => 'required'
-            ]);
+            // $this->validate($request, [
+            //     'email' => 'required|email',
+            //     'password' => 'required'
+            // ]);
+
+            $dataLogin = [
+                "email" => "eve.holt@reqres.in",
+                "password" => "cityslicka"
+            ];
 
             $dataLogin = $request->all();
             [$stsCode, $respBody] = $this->makeRequest('POST', 'login', $dataLogin);
